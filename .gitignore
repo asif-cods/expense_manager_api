@@ -1,4 +1,4 @@
 # Environment
 .venv
 venv
-.env
+# .env
