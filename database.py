@@ -1,17 +1,18 @@
-# import mysql.connector
-import aiomysql
+import mysql.connector
+from mysql.connector import MySQLConnection
+# import aiomysql
 import os
 from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
 
-async def get_db():
-    conn = await aiomysql.connect(
-        DB_NAME=os.getenv('DB_NAME'),
-        DB_HOST=os.getenv('DB_HOST'),
-        DB_PASSWORD=os.getenv('DB_PASSWORD'),
-        DB_USER=os.getenv('DB_USER'),
+def get_db() -> MySQLConnection:
+    conn = mysql.connector.connect(
+        host=os.getenv('DB_HOST'),
+        user=os.getenv('DB_USER'),
+        password=os.getenv('DB_PASSWORD'),
+        database=os.getenv('DB_NAME'),
     )
     return conn
 
